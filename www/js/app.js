@@ -3,36 +3,41 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('app', [
+angular.module('starter', [
   'ionic',
-  'app.facebook',
-  'app.home',
-  'app.map',
-  'app.maker',
-  'app.services',
+  'starter.facebook',
+  'starter.home',
+  'starter.map',
+  'starter.maker',
+  'starter.services',
   'ngMap'
   ])
+
 .config(function ($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise('home');
 
   $stateProvider
-    .state('/', {
-      url: '/home'
-    })
+    // .state('/', {
+    //   url: '/home'
+    // })
     .state('home', {
+      url: '/home',
       templateUrl: 'js/home/home.html',
       controller: 'HomeController'
     })
     .state('facebook', {
+      url: '/facebook',
       templateUrl: 'js/facebook/facebook.html',
       controller: 'FacebookController'
     })
     .state('map', {
+      url: '/map',
       templateUrl: 'js/map/map.html',
       controller: 'MapController'
     })
     .state('mapMaker', {
+      url: '/mapMaker',
       templateUrl: 'js/mapMaker/mapMaker.html',
       controller: 'MapMakerController'
     })
@@ -53,44 +58,3 @@ angular.module('app', [
     }
   });
 });
-
-// angular.module('app', [
-  // 'app.facebook',
-  // 'app.home',
-  // 'app.map',
-  // 'app.maker',
-  // 'app.services',
-  // 'ngRoute',
-  // 'ngMap'
-// ])
-// .config(function ($routeProvider, $httpProvider) {
-
-//   $routeProvider
-//     .when('/', {
-//       redirectTo: '/home'
-//     })
-//     .when('/home', {
-//       templateUrl: 'app/home/home.html',
-//       controller: 'HomeController'
-//     })
-//     .when('/facebook', {
-//       templateUrl: 'app/facebook/facebook.html',
-//       controller: 'FacebookController'
-//     })
-//     .when('/map', {
-//       templateUrl: 'app/map/map.html',
-//       controller: 'MapController'
-//     })
-//     .when('/mapMaker', {
-//       templateUrl: 'app/mapMaker/mapMaker.html',
-//       controller: 'MapMakerController'
-//     })
-//     .when('/logout', {
-//       redirectTo: '/home'
-//     })
-//     .otherwise({
-//       redirectTo: '/home'
-//     });
-
-// });
-

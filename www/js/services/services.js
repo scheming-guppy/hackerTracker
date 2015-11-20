@@ -1,4 +1,4 @@
-angular.module('app.services', [])
+angular.module('starter.services', [])
 
 .factory('ClientHelper', function ($http){
   var storage = [];
@@ -18,5 +18,4 @@ angular.module('app.services', [])
     getFBdata : getFBdata,
     getMap : getMap
   }
-
 });

@@ -1,4 +1,4 @@
-angular.module('app.map', ['ngOpenFB'])
+angular.module('starter.map', ['ngOpenFB'])
 
 .controller('MapController', ['$scope', '$openFB', '$interval', 'ClientHelper', function ($scope, $openFB, $interval, ClientHelper) {
   // methods to be used inside map.html

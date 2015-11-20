@@ -34,6 +34,7 @@
       context = $window.location.pathname.substring(0, window.location.pathname.indexOf('/', 2));
       port = location.port ? ':' + location.port : '';
       baseURL = location.protocol + "//" + location.hostname + port + context;
+      console.log(baseURL);
 
       /*
        * By default we use this environments base url for the callback page
@@ -42,7 +43,7 @@
       #
        * Take a look at the example oauthcallback.html in this directory.
        */
-      browserOauthCallback = baseURL + '/oauthcallback.html';
+      browserOauthCallback = baseURL + '/js/oauthcallback.html';
       cordovaOauthCallback = 'https://www.facebook.com/connect/login_success.html';
       runningInCordova = false;
       fbAppId = void 0;
