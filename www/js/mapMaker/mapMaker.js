@@ -1,8 +1,8 @@
-angular.module('app.maker', ['ngOpenFB'])
+angular.module('starter.maker', ['ngOpenFB'])
 
 .controller('MapMakerController', ['$scope','$openFB','$location', 'ClientHelper', function ($scope, $openFB, $location, ClientHelper) {
   
-  $scope.mapName = ""
+  $scope.mapName = "";
 
   $scope.setup = function () {
     console.log($scope.mapName);

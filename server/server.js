@@ -15,7 +15,7 @@ var storage = {};
 
 io.on('connection', function (socket) {
   socket.on('init', function (data) {
-    socket.join('/'+data);
+    socket.join('/'+ data);
     storage[data] = {};
     socket.on('userData', function (info) {
       storage[data][info.id] = info;
@@ -23,7 +23,7 @@ io.on('connection', function (socket) {
     });
     socket.on('logout', function (info) {
       delete storage[data][info];
-      socket.leave('/'+data);
+      socket.leave('/'+ data);
       socket.emit('serverData', storage[data]);
     });
   });

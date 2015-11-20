@@ -1,4 +1,4 @@
-angular.module('app.facebook', ['ngOpenFB'])
+angular.module('starter.facebook', ['ngOpenFB'])
 
 .controller('FacebookController', ['$scope', '$openFB', 'ClientHelper', '$location', function ($scope, $openFB, ClientHelper, $location) {
 
@@ -38,12 +38,9 @@ angular.module('app.facebook', ['ngOpenFB'])
       angular.extend($scope.me, {picture: res.data.url});
       ClientHelper.getFBdata($scope.me);
     }).then(function() {
-      $location.path('/facebook');
+      $location.path('/facebook'); // '/map'
     });
-  });
-
-
-
-
+  })
 }
+
 ]);
