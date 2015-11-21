@@ -1,0 +1,21 @@
+NOTES
+- added events folder, .js and .html files
+- added events.js to index.html
+- hacked app.js apart to try to default to events.html/js for testing purposes (see lines 25-28)
+- also added 'starter.events' to app.js
+- changed FB line 11
+- commented blank ion-content lines index.html lines 60-61
+- added scriptline for styles.css line 12 @ index.html
+
+
+EVENT DATA:
+- name
+- location
+  - street address
+  - city
+  - state
+  - zip code
+- description
+- start time
+- end time
+- date

@@ -1,0 +1,36 @@
+<div id="events">
+    <div class="bar bar-subheader bar-calm">
+      <h1 class="title">Upcoming Events</h1>
+      <button id="newEventButton" class="button button-stable">
+        +
+      </button>
+    </div>
+  
+  <ion-content>
+    <div collection-repeat="event in eventData.events | orderBy: date">
+      <div class="col padding eventBlock">
+        <p class="eventHeader">{{ event.name }}</p>
+        <p class="eventBody">What: {{ event.description}}</p>
+        <p class="eventBody">When: {{ event.date }} from {{ event.startTime }} until {{ event.endTime }}</p>
+        <p class="eventBody">Where: {{ event.location.Street }}</p>
+        <p class="eventBody">{{ event.location.City }}, {{ event.location.State }} {{ event.location.ZIP }}</p>
+      </div>
+    </div>
+  </ion-content>
+  
+  <!--
+  <ion-content>
+    <div collection-repeat="event in eventData.events">
+      <div class="card">
+        <div id="eventHeader" class="item item-divider">
+          {{ event. name}}
+        </div>
+        <div id="eventBody" class="item item-text-wrap">
+          When: {{ event.date }} from {{ event.startTime }} until {{ event.endTime }}
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  -->
+
+</div>
