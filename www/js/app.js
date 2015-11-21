@@ -10,6 +10,7 @@ angular.module('starter', [
   'starter.map',
   'starter.maker',
   'starter.services',
+  'starter.makeEvent',
   'ngMap'
   ])
 
@@ -42,8 +43,14 @@ angular.module('starter', [
       controller: 'MapMakerController'
     })
     .state('logout', {
-      url: '/home'
-    });
+      url: '/home',
+      templateUrl: 'js/home/home.html'
+    })
+    .state('makeEvent', {
+      url: '/makeEvent',
+      templateUrl: 'js/makeEvent/makeEvent.html',
+      controller: 'MakeEventController'
+    })
 
 })
 .run(function($ionicPlatform) {

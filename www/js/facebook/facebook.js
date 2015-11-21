@@ -8,13 +8,14 @@ angular.module('starter.facebook', ['ngOpenFB'])
     $openFB.logout();
   };
 
-  $openFB.init( {appId: '909462752470016'})
+  $openFB.init( {appId: '1520991081546037'})
 
   $openFB.login({scope: 'email, user_friends'})
 
   .then(function (res) {
     $openFB.api({path: '/me'})
     .then(function (res) {
+      console.log(res)
       angular.extend($scope.me, res);
     }, function( err ) {
       console.log(err);
@@ -37,6 +38,7 @@ angular.module('starter.facebook', ['ngOpenFB'])
     }).then(function( res ) {
       angular.extend($scope.me, {picture: res.data.url});
       ClientHelper.getFBdata($scope.me);
+      console.log($scope.me).picture;
     }).then(function() {
       $location.path('/facebook'); // '/map'
     });
