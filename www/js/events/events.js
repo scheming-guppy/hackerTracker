@@ -1,108 +1,45 @@
 angular.module('starter.events', ['ngOpenFB'])
+.factory('getEvents', function ($http, $location, $window){
+  var getEvent = function (event) {
+    return $http({
+      method: 'GET',
+      url: '/api/events',
+      data: event
+    })
+    .then(function (resp) {
+      return resp.data;
+    })
+  }
+  return {
+    getEvent: getEvent
+  }
 
-.controller('eventsController', ['$scope', '$openFB', 'ClientHelper', '$location', function ($scope, $openFB, ClientHelper, $location) {
-  console.log('eventsController')
-  $scope.testWord = 'testing testing';
-  var events = [
-    {
-      name: 'Party',
-      description: 'awesome time!',
-      startTime: 12,
-      endTime: 1,
-      date: 2,
-      location:
-      {
-        Street: 'Jones Street',
-        City: 'SF',
-        State: 'CA',
-        ZIP: 55555
-      }
-    },
-    {
-      name: 'Party',
-      description: 'awesome time!',
-      startTime: 12,
-      endTime: 1,
-      date: 3,
-      location:
-      {
-        Street: 'Jones Street',
-        City: 'SF',
-        State: 'CA',
-        ZIP: 55555
-      }
-    },
-    {
-      name: 'Party',
-      description: 'awesome time!',
-      startTime: 12,
-      endTime: 1,
-      date: 1,
-      location:
-      {
-        Street: 'Jones Street',
-        City: 'SF',
-        State: 'CA',
-        ZIP: 55555
-      }
-    },
-    {
-      name: 'Party',
-      description: 'awesome time!',
-      startTime: 12,
-      endTime: 1,
-      date: 0,
-      location:
-      {
-        Street: 'Jones Street',
-        City: 'SF',
-        State: 'CA',
-        ZIP: 55555
-      }
+})
+
+.controller('eventsController', ['$scope', '$openFB', 'ClientHelper', '$location','getEvents', function ($scope, $openFB, ClientHelper, $location, getEvents) {
+   var msToTime = function (duration) {
+        var milliseconds = parseInt((duration%1000)/100)
+            , seconds = parseInt((duration/1000)%60)
+            , minutes = parseInt((duration/(1000*60))%60)
+            , hours = parseInt((duration/(1000*60*60))%24);
+
+        hours = (hours < 10) ? "0" + hours : hours;
+        minutes = (minutes < 10) ? "0" + minutes : minutes;
+        seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+        return hours + ":" + minutes;
     }
-  ]
+
   $scope.eventData = {};
-  $scope.eventData.events = events;
-
-  $scope.me = {};
-  $scope.logout = function () {
-    $openFB.logout();
-  };
-
-  $openFB.init( {appId: '1520991081546037'})
-
-  $openFB.login({scope: 'email, user_friends'})
-
-  .then(function (res) {
-    $openFB.api({path: '/me'})
-    .then(function (res) {
-      angular.extend($scope.me, res);
-    }, function( err ) {
-      console.log(err);
-    });
-
-    $openFB.api({path: '/me/friends'})
-    .then(function (res) {
-      angular.extend($scope.me, res);
-    }, function (err) {
-      console.log(err);
-    });
-
-    $openFB.api({
-      path: '/me/picture',
-      params: {
-          redirect: false,
-          height: 50,
-          width: 50
-      }
-    }).then(function( res ) {
-      console.log('events scope.me',$scope.me)
-      angular.extend($scope.me, {picture: res.data.url});
-      ClientHelper.getFBdata($scope.me);
-    }).then(function() {
-      $location.path('/events'); // '/map'
-    });
-  })
+  getEvents.getEvent()
+  .then(function (events) {
+    events.forEach(function(ele) {
+      ele.startTime = msToTime(ele.startTime);
+      ele.endTime = msToTime(ele.endTime);
+    })
+    $scope.eventData.events = events;
+    console.log($scope.eventData.events )
+  });
 }
 
 ]);

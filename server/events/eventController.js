@@ -17,15 +17,16 @@ module.exports = {
 
   postEvent: function (request, response, next) {
     // to do for friends invited
-    console.log(request.body)
+    console.log(request.body.startTime)
+    var name = request.body.name;
     var friends = request.body.friends;
     var address = request.body.address;
     var description = request.body.description;
-    var startDate = request.body.startDate;
-    var endDate = request.body.endDate;
-    var time = request.body.time;
-
-    console.log("data....", address, description, startDate, time);
+    var startTimeString = request.body.startTimeString;
+    var endTimeString = request.body.endTimeString;
+    var date = request.body.date;
+    var createdBy = request.body.createdBy;
+    console.log('name', name, 'friends', friends, 'address', address, 'date', date, 'startTime', startTimeString)
     var create;
     var newEvent;
 
@@ -40,12 +41,14 @@ module.exports = {
     // };
     //  return create(newEvent);
     var newEvent = new Event({
+      name: name,
       friends: friends,
       address: address,
       description: description,
-      startDate: startDate,
-      endDate: endDate,
-      time: time
+      startTime: startTimeString,
+      endTime: endTimeString,
+      date: date,
+      createdBy: createdBy
     });
 
     newEvent.save(function (err, event) {

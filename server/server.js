@@ -10,7 +10,7 @@ mongoose.connect('mongodb://localhost/legacy'); //process.env.CUSTOMCONNSTR_MONG
 
 middleware(app, express);
 
-var port = process.env.PORT || 8000;
+var port = process.env.PORT || 8100;
 
 
 

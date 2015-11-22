@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
 var eventSchema = new mongoose.Schema({
+  name: String,
   friends: [{
     id: String,
     name: String
@@ -12,9 +13,10 @@ var eventSchema = new mongoose.Schema({
     zip: Number
   },
   description: String,
-  startDate: { type: Date, default: Date.now },
-  endDate: { type: Date, default: Date.now },
-  time : { type : Date, default: Date.now }
+  startTime: String,
+  endTime: String,
+  date : String,
+  createdBy: String
 });
 
 module.exports = mongoose.model('events', eventSchema);
