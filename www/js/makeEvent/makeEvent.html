@@ -39,6 +39,9 @@
     Zipcode:  <input type="text" ng-model = 'event.address.zip'/>
   </form>
 </label>
+<label>
+  Upload an image: <input type="file" name="pic" accept="image/*" ng-model="event.image">
+</label>
 <a href="#" ng-click='makeEvent()'>Click</a>
 <button ng-click='makeEvent()' class="button button-stable">Create event</button>
 </div>

@@ -11,16 +11,17 @@ angular.module('starter', [
   'starter.maker',
   'starter.services',
   'starter.makeEvent',
+  'starter.events',
   'ngMap'
   ])
 
 .config(function ($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise('home');
+  $urlRouterProvider.otherwise('events');
 
   $stateProvider
     // .state('/', {
-    //   url: '/home'
+    //   url: '/events'
     // })
     .state('home', {
       url: '/home',
@@ -50,6 +51,11 @@ angular.module('starter', [
       url: '/makeEvent',
       templateUrl: 'js/makeEvent/makeEvent.html',
       controller: 'MakeEventController'
+    })
+    .state('events', {
+      url: '/events',
+      templateUrl: 'js/events/events.html',
+      controller: 'eventsController'
     })
 
 })

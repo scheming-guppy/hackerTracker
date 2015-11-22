@@ -26,8 +26,8 @@ angular.module('starter.makeEvent', [])
   $scope.makeEvent = function () {
     $scope.event.startTimeString = $scope.event.startTime.getTime();
     $scope.event.endTimeString = $scope.event.endTime.getTime();
+    console.log($scope.event.image);
     eventCreate.makeEvent($scope.event);
-    alert(JSON.stringify($scope.event))
   }
   $scope.getFriends = function () {
     $openFB.api({path: '/me/friends'})
