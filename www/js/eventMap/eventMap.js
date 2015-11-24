@@ -35,7 +35,7 @@ res
     address = result.data.address;
     friends = result.data.friends;
     for (var i = 0; i < friends.length; i++) {
-      $scope.images.push(friends[i].id)
+      $scope.images.push(friends[i].id);
     }
     for(var j = 0; j < $scope.images.length; j++) {
       $openFB.api({
@@ -55,7 +55,7 @@ res
   })
   $scope.locationCheck = function () {
     if (navigator.geolocation) {
-      console.log('Geolocation is supported!', address);
+      console.log('Geolocation is supported!');
     } else {
       console.log('Geolocation is not supported for this Browser/OS version yet.');
     }
@@ -66,8 +66,6 @@ res
     {
       $scope.coords.lat = results[0].geometry.location.lat()
       $scope.coords.lng = results[0].geometry.location.lng()
-      console.log("lat", $scope.coords )
-      console.log('friend pictures', $scope.newImages)
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
    }
