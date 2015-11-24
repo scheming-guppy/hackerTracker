@@ -1,4 +1,4 @@
-angular.module('starter.eventMap', [])
+angular.module('starter.eventMap', ['ngOpenFB'])
 .factory('getLocation', function ($http, $location, $window){ 
    var locationSearch = function (event) {
     eventData = {};
@@ -17,9 +17,12 @@ angular.module('starter.eventMap', [])
   }
 
 } )
-.controller('EventMapController', ['$scope','getEvents', 'getLocation', function ($scope, getEvents, getLocation) {
+.controller('EventMapController', ['$scope','$openFB','getEvents', 'getLocation', function ($scope, $openFB , getEvents, getLocation) {
   $scope.eventLocation = {};
   $scope.locationData = {};
+  $scope.coords = {};
+  $scope.images = [];
+  $scope.newImages = [];
   var address;
 
   $scope.eventLocation.info = function () {
@@ -29,8 +32,26 @@ angular.module('starter.eventMap', [])
   var res = getLocation.locationSearch($scope.locationData)
 res
   .then(function(result) {
-    address = result.data.address
-      $scope.locationCheck();
+    address = result.data.address;
+    friends = result.data.friends;
+    for (var i = 0; i < friends.length; i++) {
+      $scope.images.push(friends[i].id)
+    }
+    for(var j = 0; j < $scope.images.length; j++) {
+      $openFB.api({
+      path: '/' + $scope.images[j] + '/picture',
+      params: {
+          redirect: false,
+          height: 50,
+          width: 50
+      }
+    }).then(function( res ) {
+      $scope.newImages.push(res);
+    if ($scope.newImages.length === $scope.images.length) {
+        $scope.locationCheck();
+      }
+    });
+    }
   })
   $scope.locationCheck = function () {
     if (navigator.geolocation) {
@@ -43,8 +64,10 @@ res
      geocoder.geocode( {address: address1}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) 
     {
-      console.log(results[0].geometry.location.lat());
-      console.log(results[0].geometry.location.lng())
+      $scope.coords.lat = results[0].geometry.location.lat()
+      $scope.coords.lng = results[0].geometry.location.lng()
+      console.log("lat", $scope.coords )
+      console.log('friend pictures', $scope.newImages)
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
    }

@@ -3,7 +3,21 @@
       <h1 class="title">Map of your event</h1>
     </div>
   
-
+  <div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <h4>Map: {{client.latitude}}</h4>
+    <ng-map class="map" default-style="true" center="{{coords.lat}}, {{coords.lng}}" zoom="17">
+      <marker ng-repeat="client in tempDataStore" position="current-location" class="mark"></marker>
+    </ng-map>
+  </div>
+    <h1 class="title">Friends you invited to this event</h1>
+  <div ng-repeat='image in newImages'><img ng-src='{{image.data.url}}'>
+  </div>
   
   <!--
   <ion-content>
