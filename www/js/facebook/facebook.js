@@ -1,6 +1,6 @@
 angular.module('starter.facebook', ['ngOpenFB'])
 
-.controller('FacebookController', ['$scope', '$openFB', 'ClientHelper', '$location', function ($scope, $openFB, ClientHelper, $location) {
+.controller('FacebookController', ['$scope', '$openFB', 'ClientHelper', '$location', '$window', function ($scope, $openFB, ClientHelper, $location, $window) {
 
   $scope.me = {};
 
@@ -8,14 +8,19 @@ angular.module('starter.facebook', ['ngOpenFB'])
     $openFB.logout();
   };
 
-  $openFB.init( {appId: '1520991081546037'})
+  var tokenStore = $window.sessionStorage;
+
+  $openFB.init({
+                appId: '1520991081546037',
+                tokenStore: tokenStore
+              });
 
   $openFB.login({scope: 'email, user_friends'})
 
   .then(function (res) {
     $openFB.api({path: '/me'})
     .then(function (res) {
-      console.log(res)
+      console.log(res);
       angular.extend($scope.me, res);
     }, function( err ) {
       console.log(err);

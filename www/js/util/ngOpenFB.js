@@ -125,6 +125,7 @@
          * @returns promise
          */
         login: function(options, callback) {
+          console.log('ngOpenFB login function reached');
           var exitHandler, exitListener, loadListener, loadStartHandler, location, loginUrl, q, startTime;
           if (options == null) {
             throw 'login() requires options paramter';
