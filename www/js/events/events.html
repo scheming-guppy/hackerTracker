@@ -9,7 +9,7 @@
   <ion-content>
     <div collection-repeat="event in eventData.events">
       <div class="col padding eventBlock">
-        <p class="eventHeader">{{ event.name }}</p>
+        <a class="eventHeader" ng-click='getLocationInfo(event.name)' href="#/eventMap">{{ event.name }}</a>
         <p class="eventBody">What: {{ event.description}}</p>
         <p class="eventBody">When: {{ event.date }} from {{ event.startTime }} until {{ event.endTime }}</p>
         <p class="eventBody">Where: {{ event.address.Street }}</p>

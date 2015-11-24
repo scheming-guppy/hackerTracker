@@ -12,6 +12,7 @@ angular.module('starter', [
   'starter.services',
   'starter.makeEvent',
   'starter.events',
+  'starter.eventMap',
   'ngMap'
   ])
 
@@ -56,6 +57,11 @@ angular.module('starter', [
       url: '/events',
       templateUrl: 'js/events/events.html',
       controller: 'eventsController'
+    })
+    .state('eventMap', {
+      url: '/eventMap',
+      templateUrl: 'js/eventMap/eventMap.html',
+      controller: 'EventMapController'
     })
 
 })
