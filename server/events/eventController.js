@@ -62,7 +62,6 @@ module.exports = {
     var findEvent = Q.nbind(Event.findOne, Event)
     findEvent({name: request.body.event})
     .then(function (event) {
-      console.log("wooooo", event)
       response.json(event);
     })
     .fail(function (error) {
