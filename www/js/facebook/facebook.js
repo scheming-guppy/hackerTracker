@@ -43,7 +43,6 @@ angular.module('starter.facebook', ['ngOpenFB'])
     }).then(function( res ) {
       angular.extend($scope.me, {picture: res.data.url});
       ClientHelper.getFBdata($scope.me);
-      console.log($scope.me).picture;
     }).then(function() {
       $location.path('/facebook'); // '/map'
     });

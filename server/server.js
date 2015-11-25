@@ -7,7 +7,6 @@ var app = express();
 
 app.use(express.static(__dirname + '/../www'));
 mongoose.connect('mongodb://localhost/legacy'); //process.env.CUSTOMCONNSTR_MONGOLAB_URI || 
-
 middleware(app, express);
 
 var port = process.env.PORT || 8100;

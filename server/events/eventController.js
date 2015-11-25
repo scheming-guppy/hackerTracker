@@ -26,7 +26,7 @@ module.exports = {
     var endTimeString = request.body.endTimeString;
     var date = request.body.date;
     var createdBy = request.body.createdBy;
-    console.log('name', name, 'friends', friends, 'address', address, 'date', date, 'startTime', startTimeString)
+    console.log('address', address)
     var create;
     var newEvent;
 
@@ -56,6 +56,16 @@ module.exports = {
         console.error(err);
       }
       response.status(201).send(event);
+    });
+  },
+  getEventInfo: function (request, response, next) {
+    var findEvent = Q.nbind(Event.findOne, Event)
+    findEvent({name: request.body.event})
+    .then(function (event) {
+      response.json(event);
+    })
+    .fail(function (error) {
+      next(error);
     });
   }
 

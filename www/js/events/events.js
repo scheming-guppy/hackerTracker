@@ -1,17 +1,25 @@
 angular.module('starter.events', ['ngOpenFB'])
 .factory('getEvents', function ($http, $location, $window){
+  var location;
   var getEvent = function (event) {
     return $http({
       method: 'GET',
-      url: '/api/events',
-      data: event
+      url: 'http://localhost:8100/api/events',
     })
     .then(function (resp) {
       return resp.data;
     })
   }
+  var locationInfo = function (input) {
+    location = input;
+  }
+  var returnLocation = function () {
+    return location;
+  }
   return {
-    getEvent: getEvent
+    getEvent: getEvent,
+    locationInfo: locationInfo,
+    returnLocation: returnLocation
   }
 
 })
@@ -38,8 +46,10 @@ angular.module('starter.events', ['ngOpenFB'])
       ele.endTime = msToTime(ele.endTime);
     })
     $scope.eventData.events = events;
-    console.log($scope.eventData.events )
   });
+$scope.getLocationInfo = function (input) {
+  getEvents.locationInfo(input)
 }
 
+}
 ]);

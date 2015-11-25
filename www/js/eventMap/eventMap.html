@@ -1,0 +1,39 @@
+<div id="eventMap">
+    <div class="bar bar-subheader bar-calm">
+      <h1 class="title">Map of your event</h1>
+      <a href="#/events" class="ion-android-arrow-back">
+      </a>
+    </div>
+  
+  <div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <h4>Map: {{client.latitude}}</h4>
+    <ng-map class="map" default-style="true" center="{{coords.lat}}, {{coords.lng}}" zoom="17">
+      <marker ng-repeat="client in tempDataStore" position="current-location" class="mark"></marker>
+    </ng-map>
+  </div>
+    <h1 class="title">Friends you invited to this event</h1>
+  <div ng-repeat='image in newImages'><img ng-src='{{image.data.url}}'>
+  </div>
+  
+  <!--
+  <ion-content>
+    <div collection-repeat="event in eventData.events">
+      <div class="card">
+        <div id="eventHeader" class="item item-divider">
+          {{ event. name}}
+        </div>
+        <div id="eventBody" class="item item-text-wrap">
+          When: {{ event.date }} from {{ event.startTime }} until {{ event.endTime }}
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  -->
+
+</div>

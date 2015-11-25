@@ -3,7 +3,7 @@ angular.module('starter.makeEvent', [])
   var makeEvent = function (event) {
     return $http({
       method: 'POST',
-      url: '/api/events',
+      url: 'http://localhost:8100/api/events',
       data: event
     })
     .then(function (resp) {
@@ -26,7 +26,7 @@ angular.module('starter.makeEvent', [])
   $scope.makeEvent = function () {
     $scope.event.startTimeString = $scope.event.startTime.getTime();
     $scope.event.endTimeString = $scope.event.endTime.getTime();
-    console.log($scope.event.image);
+    console.log('event',$scope.event);
     eventCreate.makeEvent($scope.event);
   }
   $scope.getFriends = function () {
